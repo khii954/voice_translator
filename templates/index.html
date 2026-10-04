@@ -128,7 +128,6 @@
             </div>
         </div>
 
-        <audio id="audioPlayer" class="hidden" autoplay></audio>
     </div>
 
     <script>
@@ -202,6 +201,12 @@
         function toggleContinuousListening() {
             const btn = document.getElementById('recordBtn');
             const status = document.getElementById('statusText');
+
+            // تفعيل محرك الصوت مبدئياً لفك حظر الجوالات (iOS / Android Autoplay)
+            if ('speechSynthesis' in window) {
+                const dummyUtterance = new SpeechSynthesisUtterance('');
+                window.speechSynthesis.speak(dummyUtterance);
+            }
 
             if (!isListening) {
                 recognition.lang = srcLang;
