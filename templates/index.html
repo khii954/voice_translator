@@ -43,27 +43,12 @@
                     <option value="tr-TR">🇹🇷 التركية (Türkçe)</option>
                     <option value="it-IT">🇮🇹 الإيطالية (Italiano)</option>
                     <option value="ru-RU">🇷🇺 الروسية (Русский)</option>
-                    <option value="zh-CN">🇨🇳 الصينية المبسطة (中文 - 普通话)</option>
+                    <option value="zh-CN">🇨🇳 الصينية المبسطة (中文)</option>
                     <option value="ja-JP">🇯🇵 اليابانية (日本語)</option>
                     <option value="ko-KR">🇰🇷 الكورية (한국어)</option>
                     <option value="hi-IN">🇮🇳 الهندية (हिन्दी)</option>
                     <option value="ur-PK">🇵🇰 الأوردية (اردو)</option>
                     <option value="fa-IR">🇮🇷 الفارسية (فارسی)</option>
-                    <option value="pt-PT">🇵🇹 البرتغالية (Português)</option>
-                    <option value="nl-NL">🇳🇱 الهولندية (Nederlands)</option>
-                    <option value="id-ID">🇮🇩 الإندونيسية (Bahasa Indonesia)</option>
-                    <option value="ms-MY">🇲🇾 الملايوية (Bahasa Melayu)</option>
-                    <option value="th-TH">🇹🇭 التايلاندية (ไทย)</option>
-                    <option value="vi-VN">🇻🇳 الفيتنامية (Tiếng Việt)</option>
-                    <option value="pl-PL">🇵🇱 البولندية (Polski)</option>
-                    <option value="sv-SE">🇸🇪 السويدية (Svenska)</option>
-                    <option value="el-GR">🇬🇷 اليونانية (Ελληνικά)</option>
-                    <option value="uk-UA">🇺🇦 الأوكرانية (Українська)</option>
-                    <option value="ro-RO">🇷🇴 الرومانية (Română)</option>
-                    <option value="cs-CZ">🇨🇿 التشيكية (Čeština)</option>
-                    <option value="hu-HU">🇭🇺 المجرية (Magyar)</option>
-                    <option value="bn-BD">🇧🇩 البنغالية (বাংলা)</option>
-                    <option value="fil-PH">🇵🇭 الفلبينية (Tagalog)</option>
                 </select>
             </div>
 
@@ -79,27 +64,12 @@
                     <option value="tr-TR">🇹🇷 التركية (Türkçe)</option>
                     <option value="it-IT">🇮🇹 الإيطالية (Italiano)</option>
                     <option value="ru-RU">🇷🇺 الروسية (Русский)</option>
-                    <option value="zh-CN">🇨🇳 الصينية المبسطة (中文 - 普通话)</option>
+                    <option value="zh-CN">🇨🇳 الصينية المبسطة (中文)</option>
                     <option value="ja-JP">🇯🇵 اليابانية (日本語)</option>
                     <option value="ko-KR">🇰🇷 الكورية (한국어)</option>
                     <option value="hi-IN">🇮🇳 الهندية (हिन्दी)</option>
                     <option value="ur-PK">🇵🇰 الأوردية (اردو)</option>
                     <option value="fa-IR">🇮🇷 الفارسية (فارسی)</option>
-                    <option value="pt-PT">🇵🇹 البرتغالية (Português)</option>
-                    <option value="nl-NL">🇳🇱 الهولندية (Nederlands)</option>
-                    <option value="id-ID">🇮🇩 الإندونيسية (Bahasa Indonesia)</option>
-                    <option value="ms-MY">🇲🇾 الملايوية (Bahasa Melayu)</option>
-                    <option value="th-TH">🇹🇭 التايلاندية (ไทย)</option>
-                    <option value="vi-VN">🇻🇳 الفيتنامية (Tiếng Việt)</option>
-                    <option value="pl-PL">🇵🇱 البولندية (Polski)</option>
-                    <option value="sv-SE">🇸🇪 السويدية (Svenska)</option>
-                    <option value="el-GR">🇬🇷 اليونانية (Ελληνικά)</option>
-                    <option value="uk-UA">🇺🇦 الأوكرانية (Українська)</option>
-                    <option value="ro-RO">🇷🇴 الرومانية (Română)</option>
-                    <option value="cs-CZ">🇨🇿 التشيكية (Čeština)</option>
-                    <option value="hu-HU">🇭🇺 المجرية (Magyar)</option>
-                    <option value="bn-BD">🇧🇩 البنغالية (বাংলা)</option>
-                    <option value="fil-PH">🇵🇭 الفلبينية (Tagalog)</option>
                 </select>
             </div>
         </div>
@@ -178,7 +148,7 @@
                 }
             };
         } else {
-            alert("متصفحك لا يدعم ميزة التعرف الفوري على الصوت. يفضل استخدام متصفح Google Chrome.");
+            alert("متصفحك لا يدعم ميزة التعرف الفوري على الصوت. يفضل استخدام متصفح Google Chrome أو Safari.");
         }
 
         function updateLanguages() {
@@ -202,10 +172,10 @@
             const btn = document.getElementById('recordBtn');
             const status = document.getElementById('statusText');
 
-            // تفعيل محرك الصوت مبدئياً لفك حظر الجوالات (iOS / Android Autoplay)
+            // إعطاء إذن للصوت على الآيفون والجوالات
             if ('speechSynthesis' in window) {
-                const dummyUtterance = new SpeechSynthesisUtterance('');
-                window.speechSynthesis.speak(dummyUtterance);
+                const dummy = new SpeechSynthesisUtterance('');
+                window.speechSynthesis.speak(dummy);
             }
 
             if (!isListening) {
@@ -235,14 +205,15 @@
             const dLang = destLang.split('-')[0];
 
             try {
-                const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sLang}&tl=${dLang}&dt=t&q=${encodeURIComponent(text)}`);
+                // استخدام API مستقر ومفتوح لتفادي حظر CORS على الجوال
+                const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${sLang}|${dLang}`);
                 const data = await res.json();
                 
-                if (data && data[0]) {
-                    let translated = data[0].map(item => item[0]).join('');
+                if (data && data.responseData) {
+                    let translated = data.responseData.translatedText;
                     document.getElementById('translatedText').innerText = translated;
 
-                    // تشغيل الصوت باللغة الهدف
+                    // تشغيل الصوت المترجم
                     if ('speechSynthesis' in window) {
                         window.speechSynthesis.cancel();
                         const utterance = new SpeechSynthesisUtterance(translated);
