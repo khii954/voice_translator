@@ -210,7 +210,7 @@
 
                 btn.classList.add('glow-pulse', 'bg-red-500', 'hover:bg-red-400');
                 btn.classList.remove('bg-emerald-500', 'hover:bg-emerald-400');
-                status.innerText = "المايك يعمل... يتحدث خالد باللغة المختارة وسيتم الترجمة تلقائياً";
+                status.innerText = "المايك يعمل... تحدث الآن وسيتم الترجمة تلقائياً";
                 status.classList.add('text-red-400');
             } else {
                 isListening = false;
@@ -224,32 +224,32 @@
         }
 
         async function translateTextDirectly(text) {
-            document.getElementById('statusText').innerText = "جاري الترجمة والنطق بواسطة مترجم خالد...";
+            document.getElementById('statusText').innerText = "جاري الترجمة والنطق...";
 
-            const formData = new FormData();
-            formData.append('text', text);
-            formData.append('src_lang', srcLang);
-            formData.append('dest_lang', destLang);
+            const sLang = srcLang.split('-')[0];
+            const dLang = destLang.split('-')[0];
 
             try {
-                const response = await fetch('/translate-text', {
-                    method: 'POST',
-                    body: formData
-                });
+                const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sLang}&tl=${dLang}&dt=t&q=${encodeURIComponent(text)}`);
+                const data = await res.json();
+                
+                if (data && data[0]) {
+                    let translated = data[0].map(item => item[0]).join('');
+                    document.getElementById('translatedText').innerText = translated;
 
-                const data = await response.json();
+                    // تشغيل الصوت باللغة الهدف
+                    if ('speechSynthesis' in window) {
+                        window.speechSynthesis.cancel();
+                        const utterance = new SpeechSynthesisUtterance(translated);
+                        utterance.lang = destLang;
+                        window.speechSynthesis.speak(utterance);
+                    }
 
-                if (response.ok && data.status === 'success') {
-                    document.getElementById('translatedText').innerText = data.translated_text;
-                    
-                    const player = document.getElementById('audioPlayer');
-                    player.src = data.audio_url;
-                    player.play();
-
-                    document.getElementById('statusText').innerText = "مترجم خالد يستمع الآن...";
+                    document.getElementById('statusText').innerText = "مستمر في الاستماع...";
                 }
             } catch (error) {
                 console.error("Translation error:", error);
+                document.getElementById('statusText').innerText = "حدث خطأ أثناء الترجمة";
             }
         }
     </script>
