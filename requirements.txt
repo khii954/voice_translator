@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+jinja2
+python-multipart
+SpeechRecognition
+deep-translator
+httpx>=0.28.1
+gTTS
+pydub

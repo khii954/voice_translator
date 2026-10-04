@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مترجم خالد الفوري</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Tajawal', sans-serif; }
+        .glow-pulse {
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.6);
+            animation: pulse 1.2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.08); opacity: 0.85; }
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col items-center justify-center p-4">
+
+    <div class="w-full max-w-2xl bg-slate-800/80 backdrop-blur-md rounded-2xl border border-slate-700/50 p-6 md:p-8 shadow-2xl">
+        
+        <div class="text-center mb-6">
+            <h1 class="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent mb-2">
+                🎙️ مترجم خالد الفوري
+            </h1>
+            <p class="text-slate-400 text-sm">اختر لغتك المفضلة من القائمة وتحدث مباشرة</p>
+        </div>
+
+        <!-- قائمة اختيار اللغات الموسعة -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 bg-slate-900/60 p-4 rounded-xl border border-slate-700/40">
+            <div>
+                <label class="block text-xs font-semibold text-emerald-400 mb-1">أتحدث بـ (اللغة الأصلية):</label>
+                <select id="srcLangSelect" onchange="updateLanguages()" class="w-full bg-slate-800 border border-slate-600 text-white rounded-lg p-2.5 text-sm focus:outline-none focus:border-emerald-500">
+                    <option value="ar-SA" selected>🇸🇦 العربية (Arabic)</option>
+                    <option value="en-US">🇺🇸 الإنجليزية (English - US)</option>
+                    <option value="en-GB">🇬🇧 الإنجليزية (English - UK)</option>
+                    <option value="fr-FR">🇫🇷 الفرنسية (Français)</option>
+                    <option value="es-ES">🇪🇸 الإسبانية (Español)</option>
+                    <option value="de-DE">🇩🇪 الألمانية (Deutsch)</option>
+                    <option value="tr-TR">🇹🇷 التركية (Türkçe)</option>
+                    <option value="it-IT">🇮🇹 الإيطالية (Italiano)</option>
+                    <option value="ru-RU">🇷🇺 الروسية (Русский)</option>
+                    <option value="zh-CN">🇨🇳 الصينية المبسطة (中文 - 普通话)</option>
+                    <option value="ja-JP">🇯🇵 اليابانية (日本語)</option>
+                    <option value="ko-KR">🇰🇷 الكورية (한국어)</option>
+                    <option value="hi-IN">🇮🇳 الهندية (हिन्दी)</option>
+                    <option value="ur-PK">🇵🇰 الأوردية (اردو)</option>
+                    <option value="fa-IR">🇮🇷 الفارسية (فارسی)</option>
+                    <option value="pt-PT">🇵🇹 البرتغالية (Português)</option>
+                    <option value="nl-NL">🇳🇱 الهولندية (Nederlands)</option>
+                    <option value="id-ID">🇮🇩 الإندونيسية (Bahasa Indonesia)</option>
+                    <option value="ms-MY">🇲🇾 الملايوية (Bahasa Melayu)</option>
+                    <option value="th-TH">🇹🇭 التايلاندية (ไทย)</option>
+                    <option value="vi-VN">🇻🇳 الفيتنامية (Tiếng Việt)</option>
+                    <option value="pl-PL">🇵🇱 البولندية (Polski)</option>
+                    <option value="sv-SE">🇸🇪 السويدية (Svenska)</option>
+                    <option value="el-GR">🇬🇷 اليونانية (Ελληνικά)</option>
+                    <option value="uk-UA">🇺🇦 الأوكرانية (Українська)</option>
+                    <option value="ro-RO">🇷🇴 الرومانية (Română)</option>
+                    <option value="cs-CZ">🇨🇿 التشيكية (Čeština)</option>
+                    <option value="hu-HU">🇭🇺 المجرية (Magyar)</option>
+                    <option value="bn-BD">🇧🇩 البنغالية (বাংলা)</option>
+                    <option value="fil-PH">🇵🇭 الفلبينية (Tagalog)</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-xs font-semibold text-teal-400 mb-1">ترجم إلى (اللغة الهدف):</label>
+                <select id="destLangSelect" onchange="updateLanguages()" class="w-full bg-slate-800 border border-slate-600 text-white rounded-lg p-2.5 text-sm focus:outline-none focus:border-teal-500">
+                    <option value="en-US" selected>🇺🇸 الإنجليزية (English - US)</option>
+                    <option value="ar-SA">🇸🇦 العربية (Arabic)</option>
+                    <option value="en-GB">🇬🇧 الإنجليزية (English - UK)</option>
+                    <option value="fr-FR">🇫🇷 الفرنسية (Français)</option>
+                    <option value="es-ES">🇪🇸 الإسبانية (Español)</option>
+                    <option value="de-DE">🇩🇪 الألمانية (Deutsch)</option>
+                    <option value="tr-TR">🇹🇷 التركية (Türkçe)</option>
+                    <option value="it-IT">🇮🇹 الإيطالية (Italiano)</option>
+                    <option value="ru-RU">🇷🇺 الروسية (Русский)</option>
+                    <option value="zh-CN">🇨🇳 الصينية المبسطة (中文 - 普通话)</option>
+                    <option value="ja-JP">🇯🇵 اليابانية (日本語)</option>
+                    <option value="ko-KR">🇰🇷 الكورية (한국어)</option>
+                    <option value="hi-IN">🇮🇳 الهندية (हिन्दी)</option>
+                    <option value="ur-PK">🇵🇰 الأوردية (اردو)</option>
+                    <option value="fa-IR">🇮🇷 الفارسية (فارسی)</option>
+                    <option value="pt-PT">🇵🇹 البرتغالية (Português)</option>
+                    <option value="nl-NL">🇳🇱 الهولندية (Nederlands)</option>
+                    <option value="id-ID">🇮🇩 الإندونيسية (Bahasa Indonesia)</option>
+                    <option value="ms-MY">🇲🇾 الملايوية (Bahasa Melayu)</option>
+                    <option value="th-TH">🇹🇭 التايلاندية (ไทย)</option>
+                    <option value="vi-VN">🇻🇳 الفيتنامية (Tiếng Việt)</option>
+                    <option value="pl-PL">🇵🇱 البولندية (Polski)</option>
+                    <option value="sv-SE">🇸🇪 السويدية (Svenska)</option>
+                    <option value="el-GR">🇬🇷 اليونانية (Ελληνικά)</option>
+                    <option value="uk-UA">🇺🇦 الأوكرانية (Українська)</option>
+                    <option value="ro-RO">🇷🇴 الرومانية (Română)</option>
+                    <option value="cs-CZ">🇨🇿 التشيكية (Čeština)</option>
+                    <option value="hu-HU">🇭🇺 المجرية (Magyar)</option>
+                    <option value="bn-BD">🇧🇩 البنغالية (বাংলা)</option>
+                    <option value="fil-PH">🇵🇭 الفلبينية (Tagalog)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- زر المايك -->
+        <div class="flex flex-col items-center justify-center my-4">
+            <button id="recordBtn" onclick="toggleContinuousListening()" 
+                class="w-20 h-20 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 flex items-center justify-center transition-all duration-300 shadow-lg cursor-pointer">
+                <svg id="micIcon" class="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 016 0v6a3 3 0 01-3 3z"></path>
+                </svg>
+            </button>
+            <p id="statusText" class="text-slate-400 text-sm mt-3 font-medium">اضغط لتشغيل المايك والبدء في الحديث المباشر</p>
+        </div>
+
+        <!-- شاشات عرض النصوص -->
+        <div class="space-y-4 mt-6">
+            <div class="bg-slate-900/70 rounded-xl p-4 border border-slate-700/30">
+                <span class="text-xs font-semibold text-emerald-400 uppercase tracking-wider block mb-1">النص المسموع (مباشر)</span>
+                <p id="originalText" class="text-slate-300 text-base min-h-[28px]">...</p>
+            </div>
+
+            <div class="bg-slate-900/70 rounded-xl p-4 border border-slate-700/30">
+                <span class="text-xs font-semibold text-teal-400 uppercase tracking-wider block mb-1">الترجمة الفورية</span>
+                <p id="translatedText" class="text-emerald-300 text-lg font-medium min-h-[32px]">...</p>
+            </div>
+        </div>
+
+        <audio id="audioPlayer" class="hidden" autoplay></audio>
+    </div>
+
+    <script>
+        let srcLang = 'ar-SA';
+        let destLang = 'en-US';
+        let recognition;
+        let isListening = false;
+
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        if (SpeechRecognition) {
+            recognition = new SpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+
+            recognition.onresult = async (event) => {
+                let interimTranscript = '';
+                let finalTranscript = '';
+
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    if (event.results[i].isFinal) {
+                        finalTranscript += event.results[i][0].transcript;
+                    } else {
+                        interimTranscript += event.results[i][0].transcript;
+                    }
+                }
+
+                if (interimTranscript !== '') {
+                    document.getElementById('originalText').innerText = interimTranscript;
+                }
+
+                if (finalTranscript !== '') {
+                    document.getElementById('originalText').innerText = finalTranscript;
+                    await translateTextDirectly(finalTranscript);
+                }
+            };
+
+            recognition.onerror = (event) => {
+                console.error("Speech recognition error:", event.error);
+                if (event.error === 'not-allowed') {
+                    alert('يرجى السماح باستخدام المايكروفون في المتصفح');
+                }
+            };
+
+            recognition.onend = () => {
+                if (isListening) {
+                    try { recognition.start(); } catch (e) {}
+                }
+            };
+        } else {
+            alert("متصفحك لا يدعم ميزة التعرف الفوري على الصوت. يفضل استخدام متصفح Google Chrome.");
+        }
+
+        function updateLanguages() {
+            srcLang = document.getElementById('srcLangSelect').value;
+            destLang = document.getElementById('destLangSelect').value;
+
+            if (recognition) {
+                if (isListening) {
+                    recognition.stop();
+                    recognition.lang = srcLang;
+                    setTimeout(() => {
+                        try { if (isListening) recognition.start(); } catch (e) {}
+                    }, 200);
+                } else {
+                    recognition.lang = srcLang;
+                }
+            }
+        }
+
+        function toggleContinuousListening() {
+            const btn = document.getElementById('recordBtn');
+            const status = document.getElementById('statusText');
+
+            if (!isListening) {
+                recognition.lang = srcLang;
+                recognition.start();
+                isListening = true;
+
+                btn.classList.add('glow-pulse', 'bg-red-500', 'hover:bg-red-400');
+                btn.classList.remove('bg-emerald-500', 'hover:bg-emerald-400');
+                status.innerText = "المايك يعمل... يتحدث خالد باللغة المختارة وسيتم الترجمة تلقائياً";
+                status.classList.add('text-red-400');
+            } else {
+                isListening = false;
+                recognition.stop();
+
+                btn.classList.remove('glow-pulse', 'bg-red-500', 'hover:bg-red-400');
+                btn.classList.add('bg-emerald-500', 'hover:bg-emerald-400');
+                status.innerText = "تم إيقاف المايك. اضغط للبدء مرة أخرى";
+                status.classList.remove('text-red-400');
+            }
+        }
+
+        async function translateTextDirectly(text) {
+            document.getElementById('statusText').innerText = "جاري الترجمة والنطق بواسطة مترجم خالد...";
+
+            const formData = new FormData();
+            formData.append('text', text);
+            formData.append('src_lang', srcLang);
+            formData.append('dest_lang', destLang);
+
+            try {
+                const response = await fetch('/translate-text', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.status === 'success') {
+                    document.getElementById('translatedText').innerText = data.translated_text;
+                    
+                    const player = document.getElementById('audioPlayer');
+                    player.src = data.audio_url;
+                    player.play();
+
+                    document.getElementById('statusText').innerText = "مترجم خالد يستمع الآن...";
+                }
+            } catch (error) {
+                console.error("Translation error:", error);
+            }
+        }
+    </script>
+</body>
+</html>
